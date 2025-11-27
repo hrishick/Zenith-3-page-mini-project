@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith Plants - 3 Page Mini Project</title>
+           <link rel="stylesheet" href="\CSS\style.css">
+       <script src="\JS\script.js" defer></script>
+    <!-- External Libraries (Tailwind for styling, FontAwesome for icons) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="Images/Zenith.svg" type="image/svg+xml">
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="showPage('home')">
+                    <i class="fa-solid fa-seedling text-green-700 text-2xl"></i>
+                    <span class="serif text-2xl font-bold tracking-wide">Zenith</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <!-- Added 'id' to links for JS active state handling -->
+                    <button id="nav-home" onclick="showPage('home')" class="nav-link text-gray-600 hover:text-green-700 px-3 py-2 transition">Home</button>
+                    <button id="nav-catalog" onclick="showPage('catalog')" class="nav-link text-gray-600 hover:text-green-700 px-3 py-2 transition">Catalog</button>
+                    <button id="nav-contact" onclick="showPage('contact')" class="nav-link text-gray-600 hover:text-green-700 px-3 py-2 transition">Contact</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-2">
+            <button onclick="showPage('home')" class="block w-full text-left py-2 text-gray-600">Home</button>
+            <button onclick="showPage('catalog')" class="block w-full text-left py-2 text-gray-600">Catalog</button>
+            <button onclick="showPage('contact')" class="block w-full text-left py-2 text-gray-600">Contact</button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
+        
+        <!-- PAGE 1: HOME PAGE -->
+        <section id="home" class="page-section active-page">
+            <!-- Hero -->
+            <div class="relative bg-stone-900 text-white py-24 px-4 text-center overflow-hidden">
+                <img src="\Images\background.webp" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">Greenery for Modern Living</h1>
+                    <p class="text-xl text-stone-200 mb-8">Discover rare succulents and lush tropical plants delivered to your door.</p>
+                    <button onclick="showPage('catalog')" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                        Shop Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="max-w-6xl mx-auto py-16 px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+                    <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-truck text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Fast Shipping</h3>
+                    <p class="text-stone-500 text-sm">Safe delivery within 2-3 business days.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+                    <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-leaf text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Fresh Guaranteed</h3>
+                    <p class="text-stone-500 text-sm">30-day health guarantee on all plants.</p>
+                </div>
+                <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+                    <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-headset text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Expert Support</h3>
+                    <p class="text-stone-500 text-sm">Plant care advice from our botanists.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: CATALOG PAGE -->
+        <section id="catalog" class="page-section">
+            <div class="max-w-6xl mx-auto py-12 px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                    <h2 class="text-3xl font-bold text-stone-800">Our Collection</h2>
+                    <!-- Category Filter Buttons -->
+                    <div class="mt-4 md:mt-0 space-x-2">
+                        <button onclick="filterProducts('all')" class="filter-btn bg-stone-800 text-white px-4 py-2 rounded-lg text-sm transition">All</button>
+                        <button onclick="filterProducts('tropical')" class="filter-btn bg-stone-200 text-stone-600 hover:bg-stone-300 px-4 py-2 rounded-lg text-sm transition">Tropical</button>
+                        <button onclick="filterProducts('succulent')" class="filter-btn bg-stone-200 text-stone-600 hover:bg-stone-300 px-4 py-2 rounded-lg text-sm transition">Succulents</button>
+                    </div>
+                </div>
+
+                <!-- JS Product Grid -->
+                <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Products will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: CONTACT PAGE -->
+        <section id="contact" class="page-section">
+            <div class="max-w-4xl mx-auto py-12 px-4">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-stone-800 mb-2">Contact Us</h2>
+                    <p class="text-stone-500">We'd love to hear from you. Send us a message.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg border border-stone-100 p-8">
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-bold text-stone-700 mb-2">Name</label>
+                                <input type="text" id="formName" required class="w-full px-4 py-2 border border-stone-200 rounded-lg bg-stone-50" placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-stone-700 mb-2">Email</label>
+                                <input type="email" id="formEmail" required class="w-full px-4 py-2 border border-stone-200 rounded-lg bg-stone-50" placeholder="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-bold text-stone-700 mb-2">Message</label>
+                            <textarea id="formMessage" rows="4" required class="w-full px-4 py-2 border border-stone-200 rounded-lg bg-stone-50" placeholder="How can we help?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 rounded-lg transition duration-200">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-6 mt-auto text-center text-sm">
+        <p>&copy; 2025 Zenith Plants Mini Project.</p>
+    </footer>
+
+    <!-- Cart Notification (Toast) -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-green-700 text-white px-6 py-3 rounded shadow-lg transform translate-y-24 transition-transform duration-300">
+        Item added to cart!
+    </div>
+</body>
+</html>

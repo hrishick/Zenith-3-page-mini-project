@@ -1,0 +1,50 @@
+
+        /* Base Styles */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #fdfcf8; /* Warm off-white */
+            color: #292524;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation Active State */
+        .nav-link.active {
+            color: #15803d; /* green-700 */
+            font-weight: 700;
+            border-bottom: 2px solid #15803d;
+        }
+
+        /* Page Transition Animations */
+        .page-section {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        /* This class is used by JS to show the active page */
+        .page-section.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Product Card Hover Effects */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom Form Input Focus */
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #15803d;
+            box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1);
+        }
+
